@@ -14,7 +14,7 @@
           "architecture": "esp32",
           "version": "0.0.1",
           "category": "ESP32",
-          "url": "https://github.com/joaopedrovbs/arduino-/releases/download/0.0.1/pion-kits-0.0.1.zip",
+          "url": "https://github.com/joaopedrovbs/arduino-support-test/releases/download/0.0.1/pion-kits-0.0.1.zip",
           "archiveFileName": "pion-kits-0.0.1.zip",
           "checksum": "e4c77312b3e30ae8110bb607b9cb87be6a8de564c02ace4e3b48459cf38c75d4",
           "size": "51896069",
