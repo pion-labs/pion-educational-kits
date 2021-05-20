@@ -1,0 +1,21 @@
+[package]
+name = "ufire_sht20"
+version = "0.9.0"
+authors = ["uFire <contact@gmail.com>"]
+readme = "README.md"
+description = "SHT20 temperature/humidity library"
+license = "MIT"
+keywords = ["temperature", "humidity"]
+
+[lib]
+name = "ufire_sht20"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ufire_sht20_bin"
+path = "src/main.rs"
+
+[dependencies]
+i2cdev = "0.3.2"
+byteorder = "1"
+shrust = "0.0.6"
