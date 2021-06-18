@@ -1,0 +1,19 @@
+{
+    "name": "BMX-055",
+    "version": "0.1.0",
+    "keywords": "BMX055, IMU, BOSCH",
+    "description": "A library for the Bosch BMX-055 9 Axis IMU. The library right now supports I2C to connect with the three sensors (accelerometer, gyroscope, magnetometer) presennt in the package. SPI access is planned.",
+    "authors":
+    {
+        "name": "Joao Pedro Vilas",
+        "email": "joaopedrovbs@gmail.com",
+        "url": "https://github.com/joaopedrovbs/BMX-055"
+    },
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/joaopedrovbs/BMX-055.git"
+    },
+    "frameworks": "arduino",
+    "platforms": "*"
+}
