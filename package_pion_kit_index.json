@@ -12,6 +12,44 @@
         {
           "name": "PION Educational Kits",
           "architecture": "esp32",
+          "version": "1.0.0",
+          "category": "ESP32",
+          "url": "https://github.com/pion-labs/pion-educational-kits/releases/download/1.0.0/pion-kits-1.0.0.zip",
+          "archiveFileName": "pion-kits-1.0.0.zip",
+          "checksum": "SHA-256:d88de66af8f1b6e587276a946b36b15ad8a60e090e6d1b231c9d474eb040ca65",
+          "size": "57160936",
+          "help": {
+            "online": ""
+          },
+          "boards": [
+            {
+              "name": "PION CanSat"
+            },
+            {
+              "name": "PION CubeSat"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "esp32",
+              "name": "xtensa-esp32-elf-gcc",
+              "version": "1.22.0-97-gc752ad5-5.2.0"
+            },
+            {
+              "packager": "esp32",
+              "name": "esptool_py",
+              "version": "3.0.0"
+            },
+            {
+              "packager": "esp32",
+              "name": "mkspiffs",
+              "version": "0.2.3"
+            }
+          ]
+        },
+        {
+          "name": "PION Educational Kits",
+          "architecture": "esp32",
           "version": "0.0.2",
           "category": "ESP32",
           "url": "https://github.com/joaopedrovbs/arduino-support-test/releases/download/0.0.2/pion-kits-0.0.2.zip",
