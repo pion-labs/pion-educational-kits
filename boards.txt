@@ -23,7 +23,7 @@ cansat.build.flash_size=4MB
 cansat.build.flash_freq=40m
 cansat.build.flash_mode=dio
 cansat.build.boot=dio
-cansat.build.partitions=default
+cansat.build.partitions=huge_app
 cansat.build.defines=
 
 cansat.menu.PSRAM.disabled=Disabled
@@ -163,7 +163,7 @@ cubesat.build.flash_size=4MB
 cubesat.build.flash_freq=40m
 cubesat.build.flash_mode=dio
 cubesat.build.boot=dio
-cubesat.build.partitions=default
+cubesat.build.partitions=huge_app
 cubesat.build.defines=
 
 cubesat.menu.PSRAM.disabled=Disabled

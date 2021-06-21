@@ -2,6 +2,7 @@ name=PION Educational Kits
 version=
 
 
+
 tools.esptool_py.path={runtime.tools.esptool_py.path}
 tools.esptool_py.cmd=esptool
 tools.esptool_py.cmd.linux=esptool.py
