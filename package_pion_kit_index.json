@@ -12,6 +12,44 @@
         {
           "name": "PION Educational Kits",
           "architecture": "esp32",
+          "version": "1.0.1",
+          "category": "ESP32",
+          "url": "https://github.com/pion-labs/pion-educational-kits/releases/download/1.0.1/pion-kits-1.0.1.zip",
+          "archiveFileName": "pion-kits-1.0.1.zip",
+          "checksum": "SHA-256:bbe8e933b5a3e3a9bcc0462555fafb2e99d4484bcff4e5f13ee80ed3a0eccb23",
+          "size": "57289068",
+          "help": {
+            "online": ""
+          },
+          "boards": [
+            {
+              "name": "PION CanSat"
+            },
+            {
+              "name": "PION CubeSat"
+            }
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "PION Educational Kits",
+              "name": "xtensa-esp32-elf-gcc",
+              "version": "1.22.0-97-gc752ad5-5.2.0"
+            },
+            {
+              "packager": "PION Educational Kits",
+              "name": "esptool_py",
+              "version": "3.0.0"
+            },
+            {
+              "packager": "PION Educational Kits",
+              "name": "mkspiffs",
+              "version": "0.2.3"
+            }
+          ]
+        },
+        {
+          "name": "PION Educational Kits",
+          "architecture": "esp32",
           "version": "1.0.0",
           "category": "ESP32",
           "url": "https://github.com/pion-labs/pion-educational-kits/releases/download/1.0.0/pion-kits-1.0.0.zip",
