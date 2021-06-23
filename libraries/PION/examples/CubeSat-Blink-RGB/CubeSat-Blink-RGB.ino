@@ -4,18 +4,16 @@
   Esse código demonstra como interagir com os LEDs RGB presentes na placa de interface do seu kit
 */
 
-System canSat;
+System cubeSat;
 
 void setup(){
-  // Inicializa seu CanSat, e seus periféricos 
-  canSat.init();
+  // Inicializa seu cubeSat, e seus periféricos  
+  cubeSat.init();
 }
 
 void loop(){
-  // Ativa o RGB
-  canSat.setRGB(BLUE);
+  cubeSat.setRGB(BLUE);
   delay(1000);
-  // Desativa o RGB
-  canSat.setRGB(OFF);
+  cubeSat.setRGB(OFF);
   delay(1000);
 }

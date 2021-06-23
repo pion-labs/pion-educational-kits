@@ -6,6 +6,7 @@ System	KEYWORD1	DATA_TYPE
 
 init	KEYWORD2
 initNoNetwork	KEYWORD2
+getBattery	KEYWORD2
 getTemperature	KEYWORD2
 getHumidity	KEYWORD2
 getPressure	KEYWORD2
@@ -23,6 +24,8 @@ toggleSiren	KEYWORD2
 getSirenState	KEYWORD2
 createSDLogTask	KEYWORD2
 toggleSD	KEYWORD2
+activateSDLog	KEYWORD2
+deactivateSDLog	KEYWORD2
 createLogOnSD	KEYWORD2
 logOnSDFile	KEYWORD2
 

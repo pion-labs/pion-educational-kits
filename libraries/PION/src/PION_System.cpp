@@ -347,6 +347,11 @@ void SerialInTask(void *pvParameters){
 }
 #endif
 
+// Get Battery Level
+uint8_t System::getBattery(){
+  return System::battery;
+}
+
 // Get Temperature from sensors
 float System::getTemperature(){
   return sensors.temperature;
@@ -435,6 +440,15 @@ void System::createSDLogTask(){
 void System::toggleSD(){
   storage.toggleSD(0);
 }
+
+void System::activateSDLog(){
+  storage.activateSDLog();
+}
+
+void System::deactivateSDLog(){
+  storage.deactivateSDLog();
+}
+
 
 void System::createLogOnSD(){
   storage.createLogOnSD();

@@ -128,6 +128,41 @@ void Storage::toggleSD(uint8_t type){
   }
 }
 
+void Storage::deactivateSDLog(){
+  if(Storage::sdStatus == SD_RECORDING){
+    LOG("Escrita finalizada!");ENDL;
+    haveStartTime = false;
+    Storage::sdStatus = SD_CONNECTED;
+    vTaskSuspend(sdTask);
+  } else if(Storage::sdStatus == NO_SD){
+    LOG("Nenhum SD Conectado!");ENDL;
+  }
+}
+
+void Storage::activateSDLog(){
+  if(Storage::sdStatus == SD_CONNECTED){
+    // Find an unused file name.
+    if (BASE_NAME_SIZE > 6) {
+      LOG("FILE_BASE_NAME too long");ENDL;
+    }
+    while (SD.exists(fileName)) {
+      if (fileName[BASE_NAME_SIZE + 1] != '9') {
+        fileName[BASE_NAME_SIZE + 1]++;
+      } else if (fileName[BASE_NAME_SIZE] != '9') {
+        fileName[BASE_NAME_SIZE + 1] = '0';
+        fileName[BASE_NAME_SIZE]++;
+      } else {
+        LOG("Can't create file name");ENDL;
+      }
+    }
+    createFileFirstLine(SD, fileName);
+    Storage::sdStatus = SD_RECORDING;
+    vTaskResume(sdTask);
+  } else if(Storage::sdStatus == NO_SD){
+    LOG("Nenhum SD Conectado!");ENDL;
+  }
+}
+
 void Storage::createLogOnSD(){
   switch (Storage::sdStatus){
     case SD_CONNECTED:
@@ -160,6 +195,8 @@ void Storage::createLogOnSD(){
 void Storage::logOnSDFile(){
   if(Storage::sdStatus == SD_RECORDING){
     appendFile(SD, fileName, xTaskGetTickCount());
+  } else{
+    LOG("Erro na criação do Arquivo!");ENDL;
   }
 }
 

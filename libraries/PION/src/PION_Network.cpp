@@ -35,22 +35,22 @@ const char* sirenMessage[] = {"ALARM_OFF","ALARM_SIREN","ALARM_ERROR","ALARM_LOW
 
 __attribute__((weak)) void networkConnect(){
 
-  // Transforms serial number into a string
+  // Transforma o serial number do sistema em uma String
   String id = String(System::getSerialNumber());
 
-  // Create new string with
-  String ssidTest = baseName + id;
+  // Cria uma nova String com o nome PION Satélite + o serial
+  String ssid = baseName + id;
 
-  // Stores string into char buffer
-  ssidTest.toCharArray(ssidId, sizeof(ssidId));
+  // Adapta a string para um array de caracteres
+  ssid.toCharArray(ssidId, sizeof(ssidId));
 
+  // Para qualquer aplicação bluetooth que possa existir
   btStop();
 
-  // Starts WiFi Access Poinnt with custom ssid + id and default password
+  // Inicializa um  WiFi Access Point com um nome + serial e a senha padrão
   WiFi.mode(WIFI_AP);
   WiFi.softAP(ssidId, password);
   WiFi.setHostname("PION Satelite");
-
 }
 
 __attribute__((weak)) void serverResponse(){
@@ -132,13 +132,19 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
 }
 
 __attribute__((weak)) void sendDataWs() {
-  DynamicJsonDocument jsonBuffer(4096);
+  // Faz a alocação de 512 Bytes para o JSON
+  DynamicJsonDocument jsonBuffer(512);
+  
+  // Adiciona todas as leituras necessárias com o formato chave:valor do JSON
   jsonBuffer["bateria"] = System::battery;
   jsonBuffer["pressao"] = Sensors::pressure;
   jsonBuffer["temperatura"] = Sensors::temperature;
   jsonBuffer["humidade"] = Sensors::humidity;
   jsonBuffer["co2"] = Sensors::CO2Level;
   jsonBuffer["luminosidade"] = Sensors::luminosity;
+  jsonBuffer["sdCard"] = sdStatusMessage[Storage::sdStatus];
+  jsonBuffer["siren"] = sirenMessage[Interface::sirenAction];
+  // Adiciona as leituras a um array dentro do JSON
   JsonArray accel = jsonBuffer.createNestedArray("acelerometro");
     accel.add(Sensors::accel[0]);
     accel.add(Sensors::accel[1]);
@@ -151,13 +157,15 @@ __attribute__((weak)) void sendDataWs() {
     mag.add(Sensors::mag[0]);
     mag.add(Sensors::mag[1]);
     mag.add(Sensors::mag[2]);
-  jsonBuffer["sdCard"] = sdStatusMessage[Storage::sdStatus];
-  jsonBuffer["siren"] = sirenMessage[Interface::sirenAction];
 
+  // Mede o tamanho do buffer do JSON
   size_t len = measureJson(jsonBuffer);
-  AsyncWebSocketMessageBuffer * buffer = ws.makeBuffer(len); //  creates a buffer (len + 1) for you.
+  // Cria um espaço na RAM de (len + 1)
+  AsyncWebSocketMessageBuffer * buffer = ws.makeBuffer(len); 
   if (buffer) {
+    // Transforma o JSON em um grande texto e o coloca no espaço criado anteriormente
     serializeJson(jsonBuffer,(char *)buffer->get(), len + 1);
+    // Envia pelo WebSocket para todos os usuários
     ws.textAll(buffer);
   }
 }

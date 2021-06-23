@@ -9,6 +9,7 @@ class System{
     static void init(bool);
     static void initNoNetwork();
     static uint8_t battery;
+    static uint8_t getBattery();
     static SemaphoreHandle_t xI2C_semaphore;
     static float getTemperature();
     static float getHumidity();
@@ -29,6 +30,8 @@ class System{
     static SDStatus_t getSDStatus();
     static void createSDLogTask();
     static void toggleSD();
+    static void deactivateSDLog();
+    static void activateSDLog();
     static void createLogOnSD();
     static void logOnSDFile();
 };
