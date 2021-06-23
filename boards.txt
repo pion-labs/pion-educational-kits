@@ -1,7 +1,10 @@
 menu.UploadSpeed=Upload Speed
 menu.CPUFreq=CPU Frequency
+menu.FlashFreq=Flash Frequency
+menu.FlashMode=Flash Mode
 menu.PartitionScheme=Partition Scheme
 menu.DebugLevel=Core Debug Level
+menu.PSRAM=PSRAM
 
 cansat.name=PION Educational Cansat
 
