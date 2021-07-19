@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 
 #include <Wire.h>
@@ -70,6 +69,8 @@ void Interface::init(){
   setRGB(WHITE);
   vTaskDelay(200);  
   setRGB(OFF);
+
+  xTaskCreatePinnedToCore(LedTask, "LedTask", 1024, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
 }
 
 // Interface Class

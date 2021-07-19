@@ -43,6 +43,8 @@ void CO2Task( void *pvParameters );
 void AnalogTask( void *pvParameters );
 void IMUTask( void *pvParameters );
 
+void configureIMU();
+
 InitStatus_t Sensors::init(){
   
   InitStatus_t sensorStatus = INIT_OK;
@@ -107,14 +109,7 @@ InitStatus_t Sensors::init(){
     if(status < 0){
       mpu9050NotFound = true;
     } else{
-      // setting the accelerometer full scale range to +/-8G 
-      IMU.setAccelRange(MPU9250::ACCEL_RANGE_8G);
-      // setting the gyroscope full scale range to +/-500 deg/s
-      IMU.setGyroRange(MPU9250::GYRO_RANGE_1000DPS);
-      // setting DLPF bandwidth to 20 Hz
-      IMU.setDlpfBandwidth(MPU9250::DLPF_BANDWIDTH_20HZ);
-      // setting SRD to 19 for a 50 Hz update rate
-      IMU.setSrd(19);
+      configureIMU();
     }
     
     if(mpu9050NotFound){
@@ -178,11 +173,11 @@ void TempHumTask(void *pvParameters){
   
     if ( xSemaphoreTake(System::xI2C_semaphore, TIME_TO_SEMAPHORE ) == pdTRUE ){
       if(sht20NotFound){
-        Sensors::temperature = sht31.readTemperature();
+        Sensors::temperature = sht31.readTemperature() - TEMPERATURE_CORRECTION;
         Sensors::humidity = sht31.readHumidity();
       }else{
         sht20.measure_all();
-        Sensors::temperature = sht20.tempC;
+        Sensors::temperature = sht20.tempC - TEMPERATURE_CORRECTION;
         Sensors::humidity = sht20.RH;
       }
       xSemaphoreGive(System::xI2C_semaphore);
@@ -266,4 +261,15 @@ void IMUTask( void *pvParameters ){
     }
     vTaskDelay(200);
   }
+}
+
+__attribute__((weak)) void configureIMU(){
+  // setting the accelerometer full scale range to +/-8G 
+  IMU.setAccelRange(MPU9250::ACCEL_RANGE_8G);
+  // setting the gyroscope full scale range to +/-500 deg/s
+  IMU.setGyroRange(MPU9250::GYRO_RANGE_1000DPS);
+  // setting DLPF bandwidth to 20 Hz
+  IMU.setDlpfBandwidth(MPU9250::DLPF_BANDWIDTH_92HZ);
+  // setting SRD to 19 for a 50 Hz update rate
+  IMU.setSrd(19);
 }
